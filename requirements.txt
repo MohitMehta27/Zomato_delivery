@@ -4,5 +4,8 @@ Flask
 scikit-learn
 seaborn
 geopy
+xgboost
+
+
 
 -e.
