@@ -29,17 +29,17 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logging.info('Data Ingestion methods Starts')
         try:
-            df = pd.read_csv(os.path.join('C:/Zomato delivery/notebook/data/finalTrain.csv'))
+            df = pd.read_csv(os.path.join('notebook','data/finalTrain.csv'))
             logging.info('Dataset read as pandas Dataframe')
 
-            # Calculate distance and drop columns
-            df['Distance (in KM)'] = df.apply(self.calculate_distance, axis=1)
-            df.drop(columns=["ID", "Delivery_person_ID", "Restaurant_latitude", "Restaurant_longitude",
-                             "Delivery_location_latitude", "Delivery_location_longitude", "Order_Date",
-                             "Time_Orderd", "Time_Order_picked", "Type_of_order"], axis=1, inplace=True)
+            # Calculate distance and create a new column
+            df['Distance_in_km'] = df.apply(self.calculate_distance, axis=1)
+
+            # Drop unnecessary columns
+            df = df.drop(['ID',"Delivery_person_ID",'Restaurant_latitude', 'Restaurant_longitude', 'Delivery_location_latitude','Delivery_location_longitude'], axis=1)
 
             os.makedirs(os.path.dirname(self.ingestion_config.raw_data_path), exist_ok=True)
-            df.to_csv(self.ingestion_config.raw_data_path, index=False)
+            df.to_csv(self.ingestion_config.raw_data_path, index=True)
             logging.info('Train test split')
             train_set, test_set = train_test_split(df, test_size=0.30, random_state=42)
 
@@ -48,15 +48,21 @@ class DataIngestion:
 
             logging.info('Ingestion of Data is completed')
 
-            return self.ingestion_config.train_data_path, self.ingestion_config.test_data_path
-    
-        except Exception as e:
-            logging.info('Exception occured at Data Ingestion stage')
-            raise CustomException(e,sys)
+            return (
+                self.ingestion_config.train_data_path,
+                self.ingestion_config.test_data_path
+            )
 
-        
+        except Exception as e:
+            logging.info('Exception occurred at Data Ingestion stage')
+            raise CustomException(e, sys)
+
+''' wrote this code just to checkn if data_ingestion is working fine
+
 if __name__ == "__main__":
     data_ingestion = DataIngestion()
     train_data_path, test_data_path = data_ingestion.initiate_data_ingestion()
     print("Train Data Path:", train_data_path)
     print("Test Data Path:", test_data_path)
+    '''
+

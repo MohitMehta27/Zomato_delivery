@@ -1,13 +1,12 @@
 import sys
-sys.path.append("C:/Zomato delivery")
-from dataclasses import dataclass 
+from dataclasses import dataclass
 
-import numpy as np
+import numpy as np 
 import pandas as pd
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OrdinalEncoder, StandardScaler
+from sklearn.preprocessing import OrdinalEncoder,StandardScaler
 
 from src.exception import CustomException
 from src.logger import logging
@@ -22,15 +21,15 @@ class DataTransformation:
     def __init__(self):
         self.data_transformation_config=DataTransformationConfig()
 
-    def get_transformation_object(self):
+    def get_data_transformation_object(self):
         try:
-            logging.info("Data Transformation initiated")
-            #seperating categorical numerical data 
-            numericals_cols=['Delivery_person_Age', 'Delivery_person_Ratings', 'Vehicle_condition','multiple_deliveries', 'Time_taken (min)', 'Distance (in KM)']
-            categorical_cols=['Weather_conditions', 'Road_traffic_density', 'Type_of_vehicle','Festival', 'City']
+            logging.info('Data Transformation initiated')
+            # Define which columns should be ordinal-encoded and which should be scaled
+            categorical_cols = ['Weather_conditions', 'Road_traffic_density', 'Type_of_vehicle','Festival', 'City']
+            numericals_cols = ['Delivery_person_Age', 'Delivery_person_Ratings', 'Vehicle_condition','multiple_deliveries', 'Distance_in_km']
 
 
-            #mapping according to rank
+            
             weather_condition_map=["Sunny","Stormy","Sandstorms","Windy","Fog","Cloudy"]
             road_traffic_map=["Low","Medium","High","Jam"]
             type_of_vehicle_map=["electric_scooter", "scooter","bicycle","motorcycle"]
@@ -66,7 +65,7 @@ class DataTransformation:
 
             logging.info('Pipeline Completed')
 
-
+        
         except Exception as e:
             logging.info ("Error in data transformation")
             raise CustomException(e,sys)
