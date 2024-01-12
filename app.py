@@ -21,11 +21,14 @@ def predict_datapoint():
         data=CustomData(
             Delivery_person_Age=request.form.get('Delivery_person_Age'),
             Delivery_person_Ratings=request.form.get('Delivery_person_Ratings'),
-            Distance_in_KM=request.form.get('Distance_in_KM'),
+            Distance_in_km=request.form.get('Distance_in_km'),
             Vehicle_condition=request.form.get('Vehicle_condition'),
             Weather_conditions = request.form.get('Weather_conditions'),
             Road_traffic_density= request.form.get('Road_traffic_density'),
-            City = request.form.get('City')
+            City = request.form.get('City'),
+            Type_of_vehicle=request.form.get('Type_of_vehicle'),
+            Festival=request.form.get('Festival'),
+            multiple_deliveries=request.form.get('multiple_deliveries')
        )
         final_new_data=data.get_data_as_dataframe()
         predict_pipeline=PredictPipeline()

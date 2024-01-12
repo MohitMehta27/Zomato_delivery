@@ -25,7 +25,7 @@ class DataTransformation:
         try:
             logging.info('Data Transformation initiated')
             # Define which columns should be ordinal-encoded and which should be scaled
-            categorical_cols = ['Weather_conditions', 'Road_traffic_density', 'Type_of_vehicle','Festival', 'City']
+            categorical_cols = ['Weather_conditions', 'Road_traffic_density','Type_of_vehicle','Festival', 'City']
             numericals_cols = ['Delivery_person_Age', 'Delivery_person_Ratings', 'Vehicle_condition','multiple_deliveries', 'Distance_in_km']
 
 

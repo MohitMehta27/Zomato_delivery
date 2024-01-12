@@ -32,24 +32,27 @@ class CustomData:
    
     def __init__(self,                 
                  Delivery_person_Age: int,
-                 Delivery_person_Ratings: int,
+                 Delivery_person_Ratings: float,
                  Distance_in_km: float,
-                 Vehicle_condition: float,
+                 Vehicle_condition: int,
+                 Type_of_vehicle:str,
+                 Festival:str,
                  Weather_conditions: str,
-                 multiple_deliveries:int,
+                 multiple_deliveries: int,
                  Road_traffic_density: str,
                  City: str):
         
         self.Delivery_person_Age = Delivery_person_Age
         self.Delivery_person_Ratings = Delivery_person_Ratings
-        self.Distance_in_km =Distance_in_km
+        self.Distance_in_km = Distance_in_km
         self.Vehicle_condition = Vehicle_condition
         self.Weather_conditions = Weather_conditions
+        self.Type_of_vehicle=Type_of_vehicle
+        self.Festival=Festival
         self.Road_traffic_density = Road_traffic_density
         self.City = City
-        self.multiple_deliveries=multiple_deliveries
+        self.multiple_deliveries = multiple_deliveries
 
-        
     def get_data_as_dataframe(self):
         try:
             custom_data_input_dict = {
@@ -57,6 +60,8 @@ class CustomData:
                 'Delivery_person_Ratings': [self.Delivery_person_Ratings],
                 'Distance_in_km': [self.Distance_in_km],
                 'Vehicle_condition': [self.Vehicle_condition],
+                'Type_of_vehicle':[self.Type_of_vehicle],
+                'Festival':[self.Festival],
                 'Weather_conditions': [self.Weather_conditions],
                 'Road_traffic_density': [self.Road_traffic_density],
                 'City': [self.City],
