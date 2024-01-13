@@ -1,6 +1,5 @@
 import os
 import sys
-sys.path.append("C:/Zomato delivery")
 from src.logger import logging
 from src.exception import CustomException
 import pandas as pd

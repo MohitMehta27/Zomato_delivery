@@ -6,6 +6,4 @@ seaborn
 geopy
 xgboost
 
-
-
 -e.
