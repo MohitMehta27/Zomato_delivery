@@ -25,7 +25,7 @@ class ModelTrainerConfig:
 
 class ModelTrainer:
     def __init__(self):
-        self.model_trainer_config = ModelTrainerConfig()
+        self.model_trainer_config = ModelTrainerConfig()  
 
     def initaite_data_transformation(self,train_array,test_array):
         try:
